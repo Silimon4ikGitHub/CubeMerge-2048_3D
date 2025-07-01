@@ -8,7 +8,6 @@ public class GamePlayController : MonoBehaviour
     private PlaySceneServiceProvider _playSceneServiceProvider;
     private CubeSpaner _cubeSpaner => _playSceneServiceProvider.CubeSpaner;
     private InputController _inputController => _playSceneServiceProvider.InputController;
-    private FinishGameController _finishGameController => _playSceneServiceProvider.FinishGameController;
 
     private const int _gameIterationDelay = 1500;
 

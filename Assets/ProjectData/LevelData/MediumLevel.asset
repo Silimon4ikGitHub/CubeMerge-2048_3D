@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49d41285d9baa494aa56adf6e401ebc7, type: 3}
-  m_Name: EasyLevel
+  m_Name: MediumLevel
   m_EditorClassIdentifier: 
   _elementsToSpawn:
   - _model: {fileID: 11400000, guid: 6e735c8c44ae94144b2fe04442a5c778, type: 2}
-    _spanChancePercent: 75
+    _spanChancePercent: 25
   - _model: {fileID: 11400000, guid: 7cbb9427c381195458ecb3c19110594a, type: 2}
     _spanChancePercent: 25
-  _levelCompleteScore: 10
-  _nextLevel: {fileID: 11400000, guid: 2df3533215859634797836298ab506eb, type: 2}
+  - _model: {fileID: 11400000, guid: d75370e18eebbd943b919df4742d345c, type: 2}
+    _spanChancePercent: 25
+  - _model: {fileID: 11400000, guid: 158dc436771c9eb4fb913c890867c1b4, type: 2}
+    _spanChancePercent: 25
+  _levelCompleteScore: 100
+  _nextLevel: {fileID: 11400000, guid: 07b11d6a3cd4d154d9bd5f6a5abc3da6, type: 2}

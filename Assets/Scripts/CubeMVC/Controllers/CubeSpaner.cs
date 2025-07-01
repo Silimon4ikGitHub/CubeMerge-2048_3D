@@ -9,12 +9,12 @@ public class CubeSpaner : MonoBehaviour
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Transform _container;
 
+    [Inject] private ProjectServiceProvider _projectServiceProvider;
     [Inject] private BaseSceneServiceProvider _sceneServiceProvider;
     
     private PlaySceneServiceProvider _playSceneServiceProvider;
     private FlexibleFactory _factory => _playSceneServiceProvider.Factory;
-    private BaseLevelData _levelData => _playSceneServiceProvider.LevelData;
-
+    private TemporaryInfo _temporaryInfo => _projectServiceProvider.TemporaryInfo;
     private BaseGamePlayElementView _currentElement;
 
     public void Initialize()
@@ -33,7 +33,7 @@ public class CubeSpaner : MonoBehaviour
     {
         var randomCubeModel = GetCubeModelByChance();
 
-        if (randomCubeModel.Prefab == null)
+        if (randomCubeModel.Prefab == null && _spawnPoint != null)
         {
             Debug.LogWarning($"No prefab found for Model {randomCubeModel.name}");
             return;
@@ -74,7 +74,7 @@ public class CubeSpaner : MonoBehaviour
     {
         float roll = Random.Range(0.1f, 100);
         float cumulative = 0;
-        var models = _levelData.ElementsToSpawn;
+        var models = _temporaryInfo.CurrentLevelData.ElementsToSpawn;
 
         foreach (var result in models)
         {

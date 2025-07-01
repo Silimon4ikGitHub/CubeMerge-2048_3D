@@ -7,7 +7,7 @@ public class LoseLimit : MonoBehaviour
 {
     [SerializeField] private float delayBeforeLose = 3f;
 
-    private Dictionary<Collider2D, Coroutine> _objectsInTrigger = new();
+    private Dictionary<Collider, Coroutine> _objectsInTrigger = new();
 
     private GamePlayController _playSceneController;
     private FinishGameController _finishGameController;
@@ -18,7 +18,7 @@ public class LoseLimit : MonoBehaviour
         _finishGameController = finishGameController;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<BaseGamePlayElementView>(out var obj))
         {
@@ -28,10 +28,9 @@ public class LoseLimit : MonoBehaviour
                 _objectsInTrigger.Add(other, waitCoroutine);
             }
         }
-
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit(Collider other)
     {
         if (_objectsInTrigger.TryGetValue(other, out Coroutine coroutine))
         {
@@ -40,7 +39,7 @@ public class LoseLimit : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitAndLose(Collider2D obj)
+    private IEnumerator WaitAndLose(Collider obj)
     {
         yield return new WaitForSeconds(delayBeforeLose);
 

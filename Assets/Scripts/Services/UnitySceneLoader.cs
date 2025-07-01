@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class UnitySceneLoader
 {
     private const string _menuScene = "Bootstrap";
-    private const string _gameplayScene = "GameplayTest";
+    private const string _gameplayScene = "GameplayScene";
 
     public void LoadGamelayScene()
     {

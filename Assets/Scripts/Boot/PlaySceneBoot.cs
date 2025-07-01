@@ -6,7 +6,6 @@ public class PlaySceneBoot : MonoBehaviour
     [Inject] private BaseSceneServiceProvider _baseServiceProvider;
     [Inject] private GamePlayController _gamePlayController;
     [Inject] private CubeSpaner _cubeSpaner;
-    [Inject] private BaseLevelData _levelData;
     [Inject] private FlexibleFactory _flexibleFactory;
     [Inject] private FlexibleFactoryPool _flexibleFactoryPool;
     [Inject] private InputController _inputController;
@@ -35,7 +34,7 @@ public class PlaySceneBoot : MonoBehaviour
             return;
         }
 
-        _playSceneServiceProvider.Initialize(_gamePlayController, _cubeSpaner, _levelData, _flexibleFactory, _flexibleFactoryPool, _inputController, _finishGameController, _playSceneUI);
+        _playSceneServiceProvider.Initialize(_gamePlayController, _cubeSpaner, _flexibleFactory, _flexibleFactoryPool, _inputController, _finishGameController, _playSceneUI);
         _cubeSpaner.Initialize();
         _gamePlayController.Initialize();
         _inputController.Initialize();

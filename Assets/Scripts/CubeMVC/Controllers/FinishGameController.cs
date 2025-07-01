@@ -6,8 +6,9 @@ public class FinishGameController : MonoBehaviour
     [SerializeField] private LoseLimit _loseLimit;
 
     [Inject] private BaseSceneServiceProvider _sceneServiceProvider;
+    [Inject] private ProjectServiceProvider _projectServiceProvider;
+    private TemporaryInfo _temporaryInfo => _projectServiceProvider.TemporaryInfo;
     private PlaySceneServiceProvider _playSceneServiceProvider;
-    private BaseLevelData _levelData => _playSceneServiceProvider.LevelData;
     private PlaySceneUI _playSceneUI => _playSceneServiceProvider.PlaySceneUI;
     private GamePlayController _gamePlayController => _playSceneServiceProvider.GameplayController;
     private LevelData _cubeLevelData;
@@ -35,7 +36,7 @@ public class FinishGameController : MonoBehaviour
 
     public void OnGameLose()
     {
-
+        _playSceneUI.ShowGameLose();
     }
 
     private void CheckDependencies()
@@ -49,7 +50,7 @@ public class FinishGameController : MonoBehaviour
             Debug.LogError("FinishGameController not initialized, check DI");
         }
 
-        if (_levelData is LevelData cubelevelData)
+        if (_temporaryInfo.CurrentLevelData is LevelData cubelevelData)
         {
             _cubeLevelData = cubelevelData;
         }

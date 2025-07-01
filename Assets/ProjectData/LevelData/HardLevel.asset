@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d41285d9baa494aa56adf6e401ebc7, type: 3}
+  m_Name: HardLevel
+  m_EditorClassIdentifier: 
+  _elementsToSpawn:
+  - _model: {fileID: 11400000, guid: 6e735c8c44ae94144b2fe04442a5c778, type: 2}
+    _spanChancePercent: 30
+  - _model: {fileID: 11400000, guid: 7cbb9427c381195458ecb3c19110594a, type: 2}
+    _spanChancePercent: 15
+  - _model: {fileID: 11400000, guid: d75370e18eebbd943b919df4742d345c, type: 2}
+    _spanChancePercent: 15
+  - _model: {fileID: 11400000, guid: 158dc436771c9eb4fb913c890867c1b4, type: 2}
+    _spanChancePercent: 15
+  - _model: {fileID: 11400000, guid: d741b57fbeb19d441a19137afa8e70cd, type: 2}
+    _spanChancePercent: 15
+  - _model: {fileID: 11400000, guid: b21f82dc41591ac44ad6ad1280e99463, type: 2}
+    _spanChancePercent: 10
+  _levelCompleteScore: 500
+  _nextLevel: {fileID: 11400000, guid: d76fd0d1d17b2904d9f866ab49ae80d1, type: 2}

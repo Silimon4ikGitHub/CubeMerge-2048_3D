@@ -7,5 +7,6 @@ public class ProjectInstaller : MonoInstaller
     {
         Container.Bind<ProjectServiceProvider>().FromNew().AsSingle().NonLazy();
         Container.Bind<UnitySceneLoader>().FromNew().AsSingle().NonLazy();
+        Container.Bind<TemporaryInfo>().FromNew().AsSingle().NonLazy();
     }
 }
