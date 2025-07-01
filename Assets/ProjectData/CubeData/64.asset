@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629230fc5fa75f84a98a491f315eb27e, type: 3}
   m_Name: 64
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 5505183667665624416, guid: 52562b1189a87444d9a8a0ef2ef83da8, type: 3}
-  _value: 64
+  _prefab: {fileID: 4591207931712876942, guid: 52562b1189a87444d9a8a0ef2ef83da8, type: 3}
+  _po2: 64
   _upgradeModel: {fileID: 11400000, guid: af67a7ecd879f484ca819844de9e57b1, type: 2}

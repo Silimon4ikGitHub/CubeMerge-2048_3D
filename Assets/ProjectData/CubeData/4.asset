@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 4
   m_EditorClassIdentifier: 
   _prefab: {fileID: 2348017048578502200, guid: fba2766c8bd2e404ab2825ea565207ad, type: 3}
-  _value: 4
+  _po2: 4
   _upgradeModel: {fileID: 11400000, guid: d75370e18eebbd943b919df4742d345c, type: 2}

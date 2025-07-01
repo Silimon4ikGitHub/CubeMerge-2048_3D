@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -27,13 +28,35 @@ public class GamePlayController : MonoBehaviour
     {
         await Task.Delay(_gameIterationDelay);
 
-        _cubeSpaner.SpawnCube();
+        _cubeSpaner.SpawnCubeByChance();
         _inputController.ChangeState(InputState.InputActive);
     }
 
     public void StartGame()
     {
-        _cubeSpaner.SpawnCube();
+        _cubeSpaner.SpawnCubeByChance();
         _inputController.ChangeState(InputState.InputActive);
+    }
+
+    public void UpgradeElement(BaseGamePlayElementView element)
+    {
+        var elementModel = element.GetModel();
+
+        if (elementModel is not CubeModel cubeModel || cubeModel.UpgradeModel == null)
+        {
+            Debug.Log("The Element " + elementModel.name.ToString() + " Not have a next type");
+            return;
+        }
+
+        var position = element.transform.position;
+
+        element.OnDespawn();
+
+        var newCube = _cubeSpaner.SpawnCube(cubeModel.UpgradeModel, position);
+
+        if (newCube is CubeView cubeView)
+        {
+            cubeView.OnUpgradeSpan();
+        }
     }
 }

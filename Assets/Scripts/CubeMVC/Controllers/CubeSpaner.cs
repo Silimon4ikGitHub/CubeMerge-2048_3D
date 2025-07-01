@@ -29,26 +29,40 @@ public class CubeSpaner : MonoBehaviour
         }
     }
 
-    public void SpawnCube()
+    public void SpawnCubeByChance()
     {
         var randomCubeModel = GetCubeModelByChance();
 
-        if (randomCubeModel.Prefab != null)
+        if (randomCubeModel.Prefab == null)
         {
-            var clampedPos = _spawnPoint.position;
+            Debug.LogWarning($"No prefab found for Model {randomCubeModel.name}");
+            return;
+        }
 
-            var element = _factory.Create(randomCubeModel.Prefab.gameObject, clampedPos, _container);
+        var clampedPos = _spawnPoint.position;
+
+        SpawnCube(randomCubeModel, clampedPos);
+    }
+
+    public IFabricElement SpawnCube(BaseElementModel model, Vector3 position)
+    {
+        if (model.Prefab != null)
+        {
+            var element = _factory.Create(model.Prefab.gameObject, position, _container);
 
             if (element is BaseGamePlayElementView playElement)
             {
-                playElement.Setup(randomCubeModel);
+                playElement.Setup(model);
                 _currentElement = playElement;
-                //_isControllerActive = true;
             }
+
+            return element;
         }
         else
         {
-            Debug.LogWarning($"No prefab found for Model {randomCubeModel.name}");
+            Debug.LogWarning($"No prefab found for Model {model.name}");
+
+            return null;
         }
     }
 

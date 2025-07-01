@@ -17,6 +17,4 @@ MonoBehaviour:
     _spanChancePercent: 75
   - _model: {fileID: 11400000, guid: 7cbb9427c381195458ecb3c19110594a, type: 2}
     _spanChancePercent: 25
-  - _model: {fileID: 0}
-    _spanChancePercent: 0
   _levelCompleteScore: 100

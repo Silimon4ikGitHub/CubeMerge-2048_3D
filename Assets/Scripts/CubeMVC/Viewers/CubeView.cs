@@ -1,7 +1,40 @@
 using UnityEngine;
 
-public class CubeView : BaseGamePlayElementView
+public class CubeView : BaseGamePlayElementView, ICubeCollider
 {
+    public int Value { get; set; }
+
+    [SerializeField] private CubeColisionBehaviour _colisionBehaviour;
+
+    private PlaySceneServiceProvider _playSceneServiceProvider;
+    private GamePlayController _gamePlayController => _playSceneServiceProvider.GameplayController;
+    
+    public override void Initialize(BaseSceneServiceProvider sceneServices)
+    {
+        base.Initialize(sceneServices);
+
+        if (sceneServices is PlaySceneServiceProvider playSceneServiceProvider)
+        {
+            _playSceneServiceProvider = playSceneServiceProvider;
+        }
+        else
+        {
+            Debug.LogError("CubeView not initializet in currnt Scene DI");
+        }
+    }
+
+    public override void Setup(BaseElementModel model)
+    {
+        base.Setup(model);
+
+        if (model is CubeModel cubeModel)
+        {
+            Value = cubeModel.Po2;
+        }
+
+        _colisionBehaviour.Setup(this);
+    }
+
     public override void Push(Vector3 direction, float force)
     {
         _rb.isKinematic = false;
@@ -13,5 +46,25 @@ public class CubeView : BaseGamePlayElementView
         base.OnSpawn(position, parent);
 
         _rb.isKinematic = true;
+    }
+
+    public void OnUpgradeSpan()
+    {
+        _rb.isKinematic = false;
+    }
+
+    public void OnCollisionSuccess(ICubeCollider otherCollider)
+    {
+        if (otherCollider is IFabricElement factoryElement)
+        {
+            factoryElement.OnDespawn();
+        }
+
+        Upgrade();
+    }
+
+    private void Upgrade()
+    {
+        _gamePlayController.UpgradeElement(this);
     }
 }
