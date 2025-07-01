@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public abstract class BaseElementModel : ScriptableObject
 {
-    public BaseGamePlayElementView Prefab => _prefab;
+    public AssetReference Prefab => _prefab;
 
-    [SerializeField] protected BaseGamePlayElementView _prefab;
+    [SerializeField] protected AssetReference _prefab;
 }

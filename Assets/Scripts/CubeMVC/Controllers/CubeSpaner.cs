@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -29,7 +30,7 @@ public class CubeSpaner : MonoBehaviour
         }
     }
 
-    public void SpawnCubeByChance()
+    public async void SpawnCubeByChance()
     {
         var randomCubeModel = GetCubeModelByChance();
 
@@ -41,7 +42,7 @@ public class CubeSpaner : MonoBehaviour
 
         var clampedPos = _spawnPoint.position;
 
-        var newElement = SpawnCube(randomCubeModel, clampedPos);
+        var newElement = await SpawnCube(randomCubeModel, clampedPos);
 
         if (newElement is BaseGamePlayElementView playElement)
         {
@@ -49,11 +50,11 @@ public class CubeSpaner : MonoBehaviour
         }
     }
 
-    public IFabricElement SpawnCube(BaseElementModel model, Vector3 position)
+    public async Task<IFabricElement> SpawnCube(BaseElementModel model, Vector3 position)
     {
         if (model.Prefab != null)
         {
-            var element = _factory.Create(model.Prefab.gameObject, position, _container);
+            var element = await _factory.Create(model.Prefab, position, _container);
 
             if (element is BaseGamePlayElementView playElement)
             {

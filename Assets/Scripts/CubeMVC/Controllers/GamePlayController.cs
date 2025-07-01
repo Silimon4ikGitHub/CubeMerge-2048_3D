@@ -23,21 +23,7 @@ public class GamePlayController : MonoBehaviour
         }
     }
 
-    public async void GoNextGameIteration()
-    {
-        await Task.Delay(_gameIterationDelay);
-
-        _cubeSpaner.SpawnCubeByChance();
-        _inputController.ChangeState(InputState.InputActive);
-    }
-
-    public void StartGame()
-    {
-        _cubeSpaner.SpawnCubeByChance();
-        _inputController.ChangeState(InputState.InputActive);
-    }
-
-    public void UpgradeElement(BaseGamePlayElementView element)
+    public async void UpgradeElement(BaseGamePlayElementView element)
     {
         var elementModel = element.GetModel();
 
@@ -53,7 +39,7 @@ public class GamePlayController : MonoBehaviour
 
         element.OnDespawn();
 
-        var newCube = _cubeSpaner.SpawnCube(cubeModel.UpgradeModel, position);
+        var newCube = await _cubeSpaner.SpawnCube(cubeModel.UpgradeModel, position);
 
         if (newCube is CubeView cubeView)
         {
@@ -61,5 +47,19 @@ public class GamePlayController : MonoBehaviour
             cubeView.Rigidbody.linearVelocity = savedVelocity;
             cubeView.Rigidbody.angularVelocity = savedAngularVelocity;
         }
+    }
+
+    public async void GoNextGameIteration()
+    {
+        await Task.Delay(_gameIterationDelay);
+
+        _cubeSpaner.SpawnCubeByChance();
+        _inputController.ChangeState(InputState.InputActive);
+    }
+
+    public void StartGame()
+    {
+        _cubeSpaner.SpawnCubeByChance();
+        _inputController.ChangeState(InputState.InputActive);
     }
 }

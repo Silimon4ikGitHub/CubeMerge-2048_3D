@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 public class FlexibleFactoryPool
 {
-    private readonly Dictionary<GameObject, Stack<IFabricElement>> _pool = new();
+    private readonly Dictionary<AssetReference, Stack<IFabricElement>> _pool = new();
     private readonly Dictionary<int, IFabricElement> _activeElements = new();
 
     private readonly DiContainer _container;
@@ -19,13 +22,28 @@ public class FlexibleFactoryPool
         _sceneServices = sceneServices;
     }
 
-    public IFabricElement GetOrCreate(GameObject prefab, Vector3 position, Transform parent = null)
+    public async Task<IFabricElement> GetOrCreateAsync(AssetReference reference, Vector3 position, Transform parent = null)
     {
         IFabricElement instance;
 
-        if (!_pool.TryGetValue(prefab, out var stack) || stack.Count == 0)
+        if (!_pool.TryGetValue(reference, out var stack) || stack.Count == 0)
         {
-            instance = _container.InstantiatePrefabForComponent<IFabricElement>(prefab);
+            var handle = reference.InstantiateAsync(parent);
+            await handle.Task;
+
+            if (handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                Debug.LogError($"Failed to instantiate prefab from reference: {reference}");
+                return null;
+            }
+
+            instance = handle.Result.GetComponent<IFabricElement>();
+            if (instance == null)
+            {
+                Debug.LogError("Prefab does not implement IFabricElement.");
+                return null;
+            }
+
             instance.Initialize(_sceneServices);
         }
         else
@@ -33,14 +51,12 @@ public class FlexibleFactoryPool
             instance = stack.Pop();
         }
 
-        instance.Id = _idCounter;
-        _idCounter++;
-
+        instance.Id = _idCounter++;
         instance.OnSpawn(position, parent);
         return instance;
     }
 
-    public void Return(GameObject prefab, IFabricElement element)
+    public void Return(AssetReference prefab, IFabricElement element)
     {
         element.OnDespawn();
 
