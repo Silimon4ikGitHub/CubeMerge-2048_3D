@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public class CubeModel : ScriptableObject
+[CreateAssetMenu(fileName = "CubeData", menuName = "Elements/New Cube Data")]
+public class CubeModel : BaseElementModel
 {
-    [SerializeField] private GameObject _prefab;
+    [SerializeField] protected int _value;
+    [SerializeField] protected CubeModel _upgradeModel;
 }
