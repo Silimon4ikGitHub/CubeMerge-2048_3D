@@ -11,6 +11,7 @@ public class InputController : MonoBehaviour
     [Inject] private BaseSceneServiceProvider _sceneServiceProvider;
     private PlaySceneServiceProvider _playSceneServiceProvider;
     private CubeSpaner _cubeSpaner => _playSceneServiceProvider.CubeSpaner;
+    private GamePlayController _gamePlayController => _playSceneServiceProvider.GameplayController;
 
     private InputState _currentInputState = InputState.NoInput;
 
@@ -41,17 +42,10 @@ public class InputController : MonoBehaviour
         {
             Debug.Log("Hold Release");
 
-            currentElement.transform.position = ClampToDragArea(currentElement.transform.position);
-
-            if (currentElement is CubeView cubeView)
-            {
-
-            }
-
             currentElement?.Push(_pushDirrection, _pushForce);
             _currentInputState = InputState.NoInput;
 
-            //SpawnRandomFoodWithDelay();
+            _gamePlayController.GoNextGameIteration();
         }
     }
 
@@ -82,15 +76,5 @@ public class InputController : MonoBehaviour
 
         // 4. Переміщення
         draggedObject.position = clampedPos;
-    }
-
-    private Vector3 ClampToDragArea(Vector3 worldPoint)
-    {
-        var bounds = _dragArea.GetComponent<Renderer>()?.bounds ?? new Bounds(_dragArea.position, _dragArea.localScale);
-
-        var clampedX = Mathf.Clamp(worldPoint.x, bounds.min.x, bounds.max.x);
-        var clampedY = Mathf.Clamp(worldPoint.y, bounds.min.y, bounds.max.y);
-
-        return new Vector3(clampedX, clampedY, 0f);
     }
 }
