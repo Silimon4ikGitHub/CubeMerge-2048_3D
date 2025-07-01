@@ -10,19 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1619567586613506131, guid: c049a0d86920db844a31b28f207b742d, type: 3}
       propertyPath: m_Name
-      value: Cube64 Variant
+      value: Cube64
       objectReference: {fileID: 0}
     - target: {fileID: 3738037063728039912, guid: c049a0d86920db844a31b28f207b742d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3738037063728039912, guid: c049a0d86920db844a31b28f207b742d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.60548925
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3738037063728039912, guid: c049a0d86920db844a31b28f207b742d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.65
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3738037063728039912, guid: c049a0d86920db844a31b28f207b742d, type: 3}
       propertyPath: m_LocalRotation.w

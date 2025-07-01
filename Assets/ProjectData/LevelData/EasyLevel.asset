@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d41285d9baa494aa56adf6e401ebc7, type: 3}
   m_Name: EasyLevel
   m_EditorClassIdentifier: 
-  _allModels:
-  - {fileID: 11400000, guid: 6e735c8c44ae94144b2fe04442a5c778, type: 2}
-  - {fileID: 11400000, guid: 7cbb9427c381195458ecb3c19110594a, type: 2}
-  - {fileID: 11400000, guid: d75370e18eebbd943b919df4742d345c, type: 2}
-  - {fileID: 11400000, guid: 158dc436771c9eb4fb913c890867c1b4, type: 2}
-  - {fileID: 11400000, guid: d741b57fbeb19d441a19137afa8e70cd, type: 2}
-  - {fileID: 11400000, guid: b21f82dc41591ac44ad6ad1280e99463, type: 2}
-  - {fileID: 11400000, guid: af67a7ecd879f484ca819844de9e57b1, type: 2}
+  _elementsToSpawn:
+  - _model: {fileID: 11400000, guid: 6e735c8c44ae94144b2fe04442a5c778, type: 2}
+    _spanChancePercent: 75
+  - _model: {fileID: 11400000, guid: 7cbb9427c381195458ecb3c19110594a, type: 2}
+    _spanChancePercent: 25
+  - _model: {fileID: 0}
+    _spanChancePercent: 0
   _levelCompleteScore: 100

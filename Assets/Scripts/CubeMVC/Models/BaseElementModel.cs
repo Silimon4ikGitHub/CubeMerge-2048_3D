@@ -2,5 +2,7 @@ using UnityEngine;
 
 public abstract class BaseElementModel : ScriptableObject
 {
-    [SerializeField] protected GameObject _prefab;
+    public BaseGamePlayElementView Prefab => _prefab;
+
+    [SerializeField] protected BaseGamePlayElementView _prefab;
 }

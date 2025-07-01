@@ -163,6 +163,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c8913ff3159d7499368bc5f35263d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &84713491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 84713492}
+  m_Layer: 0
+  m_Name: Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &84713492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84713491}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2002532197}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &284893427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,7 +1455,7 @@ Transform:
   m_GameObject: {fileID: 1736965868}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.09, z: 7.16}
+  m_LocalPosition: {x: 0, y: 0.92, z: 7.16}
   m_LocalScale: {x: 6.035151, y: 0.0439, z: 0.21322559}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1772,7 +1803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d3e3068cab8834b97ad310c4f4f6e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnArea: {fileID: 1736965869}
+  _spawnPoint: {fileID: 1736965869}
+  _container: {fileID: 84713492}
 --- !u!4 &2002532197
 Transform:
   m_ObjectHideFlags: 0
@@ -1787,6 +1819,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1736965869}
+  - {fileID: 84713492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2129824797
@@ -1820,6 +1853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gamePlayController: {fileID: 49970266}
   _cubeSpaner: {fileID: 2002532196}
+  _levelData: {fileID: 11400000, guid: d76fd0d1d17b2904d9f866ab49ae80d1, type: 2}
 --- !u!4 &2129824799
 Transform:
   m_ObjectHideFlags: 0
