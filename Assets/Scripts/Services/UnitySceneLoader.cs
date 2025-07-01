@@ -6,7 +6,7 @@ public class UnitySceneLoader
     private const string _menuScene = "Bootstrap";
     private const string _gameplayScene = "GameplayTest";
 
-    public void StartGamelayScene()
+    public void LoadGamelayScene()
     {
         LoadScene(_gameplayScene);
     }

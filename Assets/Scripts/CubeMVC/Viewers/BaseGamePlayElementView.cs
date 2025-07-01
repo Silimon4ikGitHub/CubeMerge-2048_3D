@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class BaseGamePlayElementView : MonoBehaviour, IFabricElement
 {
     public int Id { get; set; }
+    public Rigidbody Rigidbody => _rb;
 
     [SerializeField] protected Rigidbody _rb;
 

@@ -8,7 +8,7 @@ public class CubeView : BaseGamePlayElementView, ICubeCollider
 
     private PlaySceneServiceProvider _playSceneServiceProvider;
     private GamePlayController _gamePlayController => _playSceneServiceProvider.GameplayController;
-    
+    private FinishGameController _finishGameController => _playSceneServiceProvider.FinishGameController;
     public override void Initialize(BaseSceneServiceProvider sceneServices)
     {
         base.Initialize(sceneServices);
@@ -48,13 +48,15 @@ public class CubeView : BaseGamePlayElementView, ICubeCollider
         _rb.isKinematic = true;
     }
 
-    public void OnUpgradeSpan()
+    public void OnUpgradeSpawn()
     {
         _rb.isKinematic = false;
     }
 
     public void OnCollisionSuccess(ICubeCollider otherCollider)
     {
+        _finishGameController.CalculateScore(this);
+
         if (otherCollider is IFabricElement factoryElement)
         {
             factoryElement.OnDespawn();

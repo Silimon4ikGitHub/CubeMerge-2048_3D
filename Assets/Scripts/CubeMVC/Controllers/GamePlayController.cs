@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -9,8 +8,9 @@ public class GamePlayController : MonoBehaviour
     private PlaySceneServiceProvider _playSceneServiceProvider;
     private CubeSpaner _cubeSpaner => _playSceneServiceProvider.CubeSpaner;
     private InputController _inputController => _playSceneServiceProvider.InputController;
+    private FinishGameController _finishGameController => _playSceneServiceProvider.FinishGameController;
 
-    private const int _gameIterationDelay = 2000;
+    private const int _gameIterationDelay = 1500;
 
     public void Initialize()
     {
@@ -20,7 +20,7 @@ public class GamePlayController : MonoBehaviour
         }
         else
         {
-            Debug.Log("GamePlayController not initialized, check DI");
+            Debug.LogError("GamePlayController not initialized, check DI");
         }
     }
 
@@ -49,6 +49,8 @@ public class GamePlayController : MonoBehaviour
         }
 
         var position = element.transform.position;
+        Vector3 savedVelocity = element.Rigidbody.linearVelocity;
+        Vector3 savedAngularVelocity = element.Rigidbody.angularVelocity;
 
         element.OnDespawn();
 
@@ -56,7 +58,9 @@ public class GamePlayController : MonoBehaviour
 
         if (newCube is CubeView cubeView)
         {
-            cubeView.OnUpgradeSpan();
+            cubeView.OnUpgradeSpawn();
+            cubeView.Rigidbody.linearVelocity = savedVelocity;
+            cubeView.Rigidbody.angularVelocity = savedAngularVelocity;
         }
     }
 }

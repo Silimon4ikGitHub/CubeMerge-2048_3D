@@ -8,8 +8,10 @@ public class PlaySceneServiceProvider : BaseSceneServiceProvider
     public FlexibleFactory Factory { get; set; }
     public FlexibleFactoryPool FlexibleFactoryPool { get; set; }
     public InputController InputController { get; private set; }
+    public FinishGameController FinishGameController { get; private set; }
+    public PlaySceneUI PlaySceneUI { get; private set; }
 
-    public void Initialize(GamePlayController gameplayController, CubeSpaner cubeSpaner, BaseLevelData levelData, FlexibleFactory flexibleFactory, FlexibleFactoryPool flexibleFactoryPool, InputController inputController)
+    public void Initialize(GamePlayController gameplayController, CubeSpaner cubeSpaner, BaseLevelData levelData, FlexibleFactory flexibleFactory, FlexibleFactoryPool flexibleFactoryPool, InputController inputController, FinishGameController finishGameController, PlaySceneUI playSceneUI)
     {
         GameplayController = gameplayController;
         CubeSpaner = cubeSpaner;
@@ -17,5 +19,7 @@ public class PlaySceneServiceProvider : BaseSceneServiceProvider
         Factory = flexibleFactory;
         FlexibleFactoryPool = flexibleFactoryPool;
         InputController = inputController;
+        FinishGameController = finishGameController;
+        PlaySceneUI = playSceneUI;
     }
 }

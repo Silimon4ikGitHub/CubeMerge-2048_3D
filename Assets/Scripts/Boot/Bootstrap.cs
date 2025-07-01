@@ -20,6 +20,6 @@ public class Bootstrap : MonoBehaviour
 
     private void LoadGameplayScene()
     {
-        _sceneLoader.StartGamelayScene();
+        _sceneLoader.LoadGamelayScene();
     }
 }

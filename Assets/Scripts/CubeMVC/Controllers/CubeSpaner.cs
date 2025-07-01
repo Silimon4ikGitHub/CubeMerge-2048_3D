@@ -41,7 +41,12 @@ public class CubeSpaner : MonoBehaviour
 
         var clampedPos = _spawnPoint.position;
 
-        SpawnCube(randomCubeModel, clampedPos);
+        var newElement = SpawnCube(randomCubeModel, clampedPos);
+
+        if (newElement is BaseGamePlayElementView playElement)
+        {
+            _currentElement = playElement;
+        }
     }
 
     public IFabricElement SpawnCube(BaseElementModel model, Vector3 position)
@@ -53,7 +58,6 @@ public class CubeSpaner : MonoBehaviour
             if (element is BaseGamePlayElementView playElement)
             {
                 playElement.Setup(model);
-                _currentElement = playElement;
             }
 
             return element;
