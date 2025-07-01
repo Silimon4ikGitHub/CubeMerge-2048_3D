@@ -6,6 +6,7 @@ public class GamePlayController : MonoBehaviour
     [Inject] private BaseSceneServiceProvider _sceneServiceProvider;
     private PlaySceneServiceProvider _playSceneServiceProvider;
     private CubeSpaner _cubeSpaner => _playSceneServiceProvider.CubeSpaner;
+    private InputController _inputController => _playSceneServiceProvider.InputController;
 
     public void Initialize()
     {
@@ -22,5 +23,6 @@ public class GamePlayController : MonoBehaviour
     public void StartGame()
     {
         _cubeSpaner.SpawnCube();
+        _inputController.ChangeState(InputState.InputActive);
     }
 }

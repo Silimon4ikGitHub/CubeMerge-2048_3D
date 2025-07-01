@@ -4,6 +4,8 @@ using Zenject;
 
 public class CubeSpaner : MonoBehaviour
 {
+    public BaseGamePlayElementView CurrentElement => _currentElement;
+
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Transform _container;
 
@@ -30,9 +32,6 @@ public class CubeSpaner : MonoBehaviour
     public void SpawnCube()
     {
         var randomCubeModel = GetCubeModelByChance();
-
-        Debug.Log("Model = " + (randomCubeModel == null).ToString());
-        Debug.Log("Prefab = " + (randomCubeModel.Prefab == null).ToString());
 
         if (randomCubeModel.Prefab != null)
         {
@@ -65,8 +64,6 @@ public class CubeSpaner : MonoBehaviour
 
             if (roll <= cumulative)
             {
-                Debug.Log("Model = " + (result.Model == null).ToString());
-                Debug.Log("Prefab = " + (result.Model.Prefab == null).ToString());
                 return result.Model;
             }
         }

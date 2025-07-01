@@ -1,11 +1,15 @@
 using UnityEngine;
 
-public class BaseGamePlayElementView : MonoBehaviour, IFabricElement
+public abstract class BaseGamePlayElementView : MonoBehaviour, IFabricElement
 {
     public int Id { get; set; }
 
+    [SerializeField] protected Rigidbody _rb;
+
     protected BaseElementModel _myModel;
     protected BaseSceneServiceProvider _sceneServiceProvider;
+
+    public abstract void Push(Vector3 direction, float force);
 
     public void Initialize(BaseSceneServiceProvider sceneServices)
     {
