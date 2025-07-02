@@ -2,14 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 public class FlexibleFactoryPool
 {
-    private readonly Dictionary<AssetReference, Stack<IFabricElement>> _pool = new();
-    private readonly Dictionary<int, IFabricElement> _activeElements = new();
+    private readonly Dictionary<FactoryElementType, List<IFactoryElement>> _pool = new();
+    private readonly Dictionary<int, IFactoryElement> _activeElements = new();
 
     private readonly DiContainer _container;
     private readonly BaseSceneServiceProvider _sceneServices;
@@ -24,13 +23,32 @@ public class FlexibleFactoryPool
         _sceneServices = sceneServices;
     }
 
-    public async Task<IFabricElement> GetOrCreateAsync(AssetReference reference, Vector3 position, Transform parent = null)
+    public async Task<IFactoryElement> GetOrCreateAsync(IFactoryElementModel reference, Vector3 position, Transform parent = null)
     {
-        IFabricElement instance;
+        List<IFactoryElement> typePool;
+        IFactoryElement instance = null;
 
-        if (!_pool.TryGetValue(reference, out var stack) || stack.Count == 0)
+        _pool.TryGetValue(reference.Type, out var existPool);
+        typePool = existPool;
+        
+        if (typePool != null)
         {
-            var handle = reference.InstantiateAsync(parent);
+            foreach (var element in typePool)
+            {
+                if (element.Active == false)
+                {
+                    instance = element;
+                }
+            }
+        }
+        else
+        {
+            _pool.Add(reference.Type, new List<IFactoryElement>());
+        }
+
+        if (instance == null || instance.Active)
+        {
+            var handle = reference.Prefab.InstantiateAsync(parent);
             await handle.Task;
 
             if (handle.Status != AsyncOperationStatus.Succeeded)
@@ -39,7 +57,8 @@ public class FlexibleFactoryPool
                 return null;
             }
 
-            instance = handle.Result.GetComponent<IFabricElement>();
+            instance = handle.Result.GetComponent<IFactoryElement>();
+
             if (instance == null)
             {
                 Debug.LogError("Prefab does not implement IFabricElement.");
@@ -47,10 +66,8 @@ public class FlexibleFactoryPool
             }
 
             instance.Initialize(_projectServices, _sceneServices);
-        }
-        else
-        {
-            instance = stack.Pop();
+            _pool.TryGetValue(reference.Type, out var objectPool);
+            objectPool.Add(instance);
         }
 
         instance.Id = _idCounter++;
@@ -58,25 +75,18 @@ public class FlexibleFactoryPool
         return instance;
     }
 
-    public void Return(AssetReference prefab, IFabricElement element)
+    public void Return(IFactoryElementModel model, IFactoryElement element)
     {
         element.OnDespawn();
-
-        if (!_pool.ContainsKey(prefab))
-        {
-            _pool[prefab] = new Stack<IFabricElement>();
-        }
-
-        _pool[prefab].Push(element);
     }
 
-    public IFabricElement GetById(int id)
+    public IFactoryElement GetById(int id)
     {
         _activeElements.TryGetValue(id, out var element);
         return element;
     }
 
-    public List<IFabricElement> GetAllActive()
+    public List<IFactoryElement> GetAllActive()
     {
         return _activeElements.Values
             .Where(e => (e as MonoBehaviour)?.gameObject.activeSelf == true)

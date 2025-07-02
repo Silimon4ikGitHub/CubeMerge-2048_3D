@@ -18,5 +18,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
+  _type: 6
   _po2: 32
   _upgradeModel: {fileID: 11400000, guid: b21f82dc41591ac44ad6ad1280e99463, type: 2}

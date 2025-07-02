@@ -11,13 +11,13 @@ public class FlexibleFactory
         _pool = pool;
     }
 
-    public async Task<IFabricElement> Create(AssetReference prefab, Vector3 position, Transform parent = null)
+    public async Task<IFactoryElement> Create(IFactoryElementModel model, Vector3 position, Transform parent = null)
     {
-        return await _pool.GetOrCreateAsync(prefab, position, parent);
+        return await _pool.GetOrCreateAsync(model, position, parent);
     }
 
-    public void Despawn(AssetReference prefab, IFabricElement element)
+    public void Despawn(IFactoryElementModel model, IFactoryElement element)
     {
-        _pool.Return(prefab, element);
+        _pool.Return(model, element);
     }
 }

@@ -10,6 +10,7 @@ public class CubeView : BaseGamePlayElementView, ICubeCollider
     private GamePlayController _gamePlayController => _playSceneServiceProvider.GameplayController;
     private FinishGameController _finishGameController => _playSceneServiceProvider.FinishGameController;
     private TemporaryInfo _temporaryInfo => _projectServiceProvider.TemporaryInfo;
+    private Quaternion _originRotation;
 
     public override void Initialize(ProjectServiceProvider projectServiceProvider, BaseSceneServiceProvider sceneServices)
     {
@@ -23,6 +24,8 @@ public class CubeView : BaseGamePlayElementView, ICubeCollider
         {
             Debug.LogError("CubeView not initializet in currnt Scene DI");
         }
+
+        _originRotation = transform.rotation;
     }
 
     public override void Setup(BaseElementModel model)
@@ -54,6 +57,7 @@ public class CubeView : BaseGamePlayElementView, ICubeCollider
 
         _rb.isKinematic = true;
         _currentState = ElementState.OnDrag;
+        transform.rotation = _originRotation;
     }
 
     public void OnUpgradeSpawn()
@@ -65,7 +69,7 @@ public class CubeView : BaseGamePlayElementView, ICubeCollider
     {
         _finishGameController.CalculateScore(this);
 
-        if (otherCollider is IFabricElement factoryElement)
+        if (otherCollider is IFactoryElement factoryElement)
         {
             factoryElement.OnDespawn();
         }

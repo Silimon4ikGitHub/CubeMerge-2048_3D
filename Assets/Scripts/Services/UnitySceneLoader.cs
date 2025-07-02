@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class UnitySceneLoader
 {
-    private const string _menuScene = "Assets/Scenes/Game/Bootstrap.unity";
-    private const string _gameplayScene = "Assets/Scenes/Game/GameplayScene.unity";
+    private const string _menuScene = "Bootstrap";
+    private const string _gameplayScene = "GameplayScene";
 
     public async void LoadGamelayScene()
     {
