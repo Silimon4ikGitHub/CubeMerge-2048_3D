@@ -30,7 +30,7 @@ public class CubeSpaner : MonoBehaviour
         }
     }
 
-    public async void SpawnCubeByChance()
+    public async Task SpawnCubeByChance()
     {
         var randomCubeModel = GetCubeModelByChance();
 

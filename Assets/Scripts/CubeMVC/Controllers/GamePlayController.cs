@@ -53,13 +53,13 @@ public class GamePlayController : MonoBehaviour
     {
         await Task.Delay(_gameIterationDelay);
 
-        _cubeSpaner.SpawnCubeByChance();
+        await _cubeSpaner.SpawnCubeByChance();
         _inputController.ChangeState(InputState.InputActive);
     }
 
-    public void StartGame()
+    public async void StartGame()
     {
-        _cubeSpaner.SpawnCubeByChance();
+        await _cubeSpaner.SpawnCubeByChance();
         _inputController.ChangeState(InputState.InputActive);
     }
 }
