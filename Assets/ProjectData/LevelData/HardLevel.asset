@@ -26,4 +26,5 @@ MonoBehaviour:
   - _model: {fileID: 11400000, guid: b21f82dc41591ac44ad6ad1280e99463, type: 2}
     _spanChancePercent: 10
   _levelCompleteScore: 500
+  _minCollisionImpilse: 3
   _nextLevel: {fileID: 11400000, guid: d76fd0d1d17b2904d9f866ab49ae80d1, type: 2}

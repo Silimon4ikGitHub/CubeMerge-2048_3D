@@ -13,11 +13,13 @@ public class FlexibleFactoryPool
 
     private readonly DiContainer _container;
     private readonly BaseSceneServiceProvider _sceneServices;
+    private readonly ProjectServiceProvider _projectServices;
 
     private int _idCounter;
 
-    public FlexibleFactoryPool(DiContainer container, BaseSceneServiceProvider sceneServices)
+    public FlexibleFactoryPool(DiContainer container, ProjectServiceProvider projectServiceProvider, BaseSceneServiceProvider sceneServices)
     {
+        _projectServices = projectServiceProvider;
         _container = container;
         _sceneServices = sceneServices;
     }
@@ -44,7 +46,7 @@ public class FlexibleFactoryPool
                 return null;
             }
 
-            instance.Initialize(_sceneServices);
+            instance.Initialize(_projectServices, _sceneServices);
         }
         else
         {

@@ -9,9 +9,11 @@ public class CubeView : BaseGamePlayElementView, ICubeCollider
     private PlaySceneServiceProvider _playSceneServiceProvider;
     private GamePlayController _gamePlayController => _playSceneServiceProvider.GameplayController;
     private FinishGameController _finishGameController => _playSceneServiceProvider.FinishGameController;
-    public override void Initialize(BaseSceneServiceProvider sceneServices)
+    private TemporaryInfo _temporaryInfo => _projectServiceProvider.TemporaryInfo;
+
+    public override void Initialize(ProjectServiceProvider projectServiceProvider, BaseSceneServiceProvider sceneServices)
     {
-        base.Initialize(sceneServices);
+        base.Initialize(projectServiceProvider, sceneServices);
 
         if (sceneServices is PlaySceneServiceProvider playSceneServiceProvider)
         {
@@ -30,6 +32,10 @@ public class CubeView : BaseGamePlayElementView, ICubeCollider
         if (model is CubeModel cubeModel)
         {
             Value = cubeModel.Po2;
+        }
+        if (_temporaryInfo.CurrentLevelData is LevelData levelData)
+        {
+            _colisionBehaviour.SetMinCollisionImpulse(levelData.MinCollisionImpilse);
         }
 
         _colisionBehaviour.Setup(this);

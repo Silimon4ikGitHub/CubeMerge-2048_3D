@@ -45,8 +45,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b172013c7f031b54aa55dbd56b359209
+    m_Address: Assets/Scenes/Game/GameplayScene.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c049a0d86920db844a31b28f207b742d
     m_Address: Assets/Prefabs/Cubes/BaseCube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca19dd5356f2fc64abc2debb2e14181c
+    m_Address: Assets/Scenes/Game/Bootstrap.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

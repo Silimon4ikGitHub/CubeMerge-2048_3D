@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public abstract class BaseGamePlayElementView : MonoBehaviour, IFabricElement
 {
@@ -10,12 +11,14 @@ public abstract class BaseGamePlayElementView : MonoBehaviour, IFabricElement
 
     protected BaseElementModel _myModel;
     protected BaseSceneServiceProvider _sceneServiceProvider;
+    protected ProjectServiceProvider _projectServiceProvider;
     protected ElementState _currentState = ElementState.None;
 
     public abstract void Push(Vector3 direction, float force);
 
-    public virtual void Initialize(BaseSceneServiceProvider sceneServices)
+    public virtual void Initialize(ProjectServiceProvider projectServiceProvider, BaseSceneServiceProvider sceneServices)
     {
+        _projectServiceProvider = projectServiceProvider;
         _sceneServiceProvider = sceneServices;
     }
 

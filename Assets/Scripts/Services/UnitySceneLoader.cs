@@ -1,22 +1,33 @@
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
 public class UnitySceneLoader
 {
-    private const string _menuScene = "Bootstrap";
-    private const string _gameplayScene = "GameplayScene";
+    private const string _menuScene = "Assets/Scenes/Game/Bootstrap.unity";
+    private const string _gameplayScene = "Assets/Scenes/Game/GameplayScene.unity";
 
-    public void LoadGamelayScene()
+    public async void LoadGamelayScene()
     {
-        LoadScene(_gameplayScene);
+        await LoadSceneAsync(_gameplayScene);
     }
 
-    private void LoadScene(string sceneName)
+    private async Task LoadSceneAsync(string sceneName)
     {
-        Debug.Log("Load Scene with name: " + sceneName);
+        Debug.Log("Load Addressable Scene: " + sceneName);
 
         OnSceneChange();
-        SceneManager.LoadScene(sceneName);
+
+        AsyncOperationHandle<SceneInstance> handle = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        await handle.Task;
+
+        if (handle.Status != AsyncOperationStatus.Succeeded)
+        {
+            Debug.LogError("Failed to load scene: " + sceneName);
+        }
     }
 
     private void OnSceneChange()
