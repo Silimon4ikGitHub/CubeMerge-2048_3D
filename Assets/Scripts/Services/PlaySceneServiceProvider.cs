@@ -1,4 +1,3 @@
-using UnityEngine;
 
 public class PlaySceneServiceProvider : BaseSceneServiceProvider
 {
@@ -10,7 +9,16 @@ public class PlaySceneServiceProvider : BaseSceneServiceProvider
     public FinishGameController FinishGameController { get; private set; }
     public PlaySceneUI PlaySceneUI { get; private set; }
 
-    public void Initialize(GamePlayController gameplayController, CubeSpaner cubeSpaner, FlexibleFactory flexibleFactory, FlexibleFactoryPool flexibleFactoryPool, InputController inputController, FinishGameController finishGameController, PlaySceneUI playSceneUI)
+    public void Initialize
+    (
+        GamePlayController gameplayController, 
+        CubeSpaner cubeSpaner, 
+        FlexibleFactory flexibleFactory, 
+        FlexibleFactoryPool flexibleFactoryPool, 
+        InputController inputController, 
+        FinishGameController finishGameController, 
+        PlaySceneUI playSceneUI
+    )
     {
         GameplayController = gameplayController;
         CubeSpaner = cubeSpaner;

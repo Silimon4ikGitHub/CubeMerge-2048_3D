@@ -26,7 +26,7 @@ public class CubeSpaner : MonoBehaviour
         }
         else
         {
-            Debug.Log("CubeSpaner not initialized, check DI");
+            Debug.LogError("CubeSpaner not initialized, check DI");
         }
     }
 

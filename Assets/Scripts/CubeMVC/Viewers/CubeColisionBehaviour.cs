@@ -25,12 +25,8 @@ public class CubeColisionBehaviour : MonoBehaviour
         {
             float impulseMagnitude = collision.impulse.magnitude;
 
-            Debug.Log($"Impulse magnitude: {impulseMagnitude}");
-            Debug.Log($"minImpulseThreshold: {_minImpulseThreshold}");
-
             if (impulseMagnitude < _minImpulseThreshold)
             {
-                Debug.Log("Impulse too low. Collision ignored.");
                 return;
             }
 
