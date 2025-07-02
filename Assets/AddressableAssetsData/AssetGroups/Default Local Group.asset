@@ -16,52 +16,52 @@ MonoBehaviour:
   m_GUID: f314d23cf11c13d428a79265734e76d1
   m_SerializeEntries:
   - m_GUID: 3656325a818b7ae4fa7bbb6eab2c93fb
-    m_Address: Assets/Prefabs/Cubes/Cube16.prefab
+    m_Address: Cube16
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4b7dd56816347dc4390d3d432bd02f10
-    m_Address: Assets/Prefabs/Cubes/Cube2.prefab
+    m_Address: Cube2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 52562b1189a87444d9a8a0ef2ef83da8
-    m_Address: Assets/Prefabs/Cubes/Cube64.prefab
+    m_Address: Cube64
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8f02a59047483b54b8e13a14f3695165
-    m_Address: Assets/Prefabs/Cubes/Cube128.prefab
+    m_Address: Cube128
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a70d83eb5192668429fb1394434bea0d
-    m_Address: Assets/Prefabs/Cubes/Cube8.prefab
+    m_Address: Cube8
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aa94bf8f4c386414fae3adf1769203a8
-    m_Address: Assets/Prefabs/Cubes/Cube32.prefab
+    m_Address: Cube32
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b172013c7f031b54aa55dbd56b359209
-    m_Address: Assets/Scenes/Game/GameplayScene.unity
+    m_Address: GameplayScene
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c049a0d86920db844a31b28f207b742d
-    m_Address: Assets/Prefabs/Cubes/BaseCube.prefab
+    m_Address: BaseCube
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca19dd5356f2fc64abc2debb2e14181c
-    m_Address: Assets/Scenes/Game/Bootstrap.unity
+    m_Address: Bootstrap
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fba2766c8bd2e404ab2825ea565207ad
-    m_Address: Assets/Prefabs/Cubes/Cube4.prefab
+    m_Address: Cube4
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

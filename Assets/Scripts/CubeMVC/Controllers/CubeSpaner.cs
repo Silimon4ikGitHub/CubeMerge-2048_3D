@@ -50,11 +50,11 @@ public class CubeSpaner : MonoBehaviour
         }
     }
 
-    public async Task<IFabricElement> SpawnCube(BaseElementModel model, Vector3 position)
+    public async Task<IFactoryElement> SpawnCube(BaseElementModel model, Vector3 position)
     {
         if (model.Prefab != null)
         {
-            var element = await _factory.Create(model.Prefab, position, _container);
+            var element = await _factory.Create(model, position, _container);
 
             if (element is BaseGamePlayElementView playElement)
             {

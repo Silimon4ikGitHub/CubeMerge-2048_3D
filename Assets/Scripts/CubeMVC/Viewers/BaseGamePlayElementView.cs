@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public abstract class BaseGamePlayElementView : MonoBehaviour, IFabricElement
+public abstract class BaseGamePlayElementView : MonoBehaviour, IFactoryElement
 {
+    public bool Active => gameObject.activeSelf;
     public int Id { get; set; }
     public Rigidbody Rigidbody => _rb;
     public ElementState CurrentState => _currentState;
