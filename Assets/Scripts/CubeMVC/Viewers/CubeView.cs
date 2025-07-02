@@ -39,6 +39,7 @@ public class CubeView : BaseGamePlayElementView, ICubeCollider
     {
         _rb.isKinematic = false;
         _rb.AddForce(direction.normalized * force, ForceMode.Impulse);
+        _currentState = ElementState.Pushed;
     }
 
     public override void OnSpawn(Vector3 position, Transform parent)
@@ -46,6 +47,7 @@ public class CubeView : BaseGamePlayElementView, ICubeCollider
         base.OnSpawn(position, parent);
 
         _rb.isKinematic = true;
+        _currentState = ElementState.OnDrag;
     }
 
     public void OnUpgradeSpawn()

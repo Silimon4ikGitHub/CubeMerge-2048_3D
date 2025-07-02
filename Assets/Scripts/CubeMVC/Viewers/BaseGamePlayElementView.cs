@@ -4,11 +4,13 @@ public abstract class BaseGamePlayElementView : MonoBehaviour, IFabricElement
 {
     public int Id { get; set; }
     public Rigidbody Rigidbody => _rb;
+    public ElementState CurrentState => _currentState;
 
     [SerializeField] protected Rigidbody _rb;
 
     protected BaseElementModel _myModel;
     protected BaseSceneServiceProvider _sceneServiceProvider;
+    protected ElementState _currentState = ElementState.None;
 
     public abstract void Push(Vector3 direction, float force);
 

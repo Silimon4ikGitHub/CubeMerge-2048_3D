@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 public class LoseLimit : MonoBehaviour
 {
@@ -22,7 +21,7 @@ public class LoseLimit : MonoBehaviour
     {
         if (other.TryGetComponent<BaseGamePlayElementView>(out var obj))
         {
-            if (!_objectsInTrigger.ContainsKey(other))
+            if (!_objectsInTrigger.ContainsKey(other) && obj.CurrentState == ElementState.Pushed)
             {
                 Coroutine waitCoroutine = StartCoroutine(WaitAndLose(other));
                 _objectsInTrigger.Add(other, waitCoroutine);
